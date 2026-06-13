@@ -98,6 +98,35 @@ class ExamRecord(db.Model):
         }
 
 
+class Waitlist(db.Model):
+    __tablename__ = "waitlists"
+
+    id = db.Column(db.Integer, primary_key=True)
+    student_name = db.Column(db.String(60), nullable=False)
+    id_number = db.Column(db.String(30), nullable=False)
+    subject = db.Column(db.String(20), nullable=False)
+    exam_date = db.Column(db.Date, nullable=False)
+    timeslot = db.Column(db.String(20), nullable=False)
+    status = db.Column(db.String(20), nullable=False, default="候补中")
+    position = db.Column(db.Integer, nullable=False, default=0)
+    notified = db.Column(db.Boolean, nullable=False, default=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "studentName": self.student_name,
+            "idNumber": self.id_number,
+            "subject": self.subject,
+            "examDate": self.exam_date.isoformat(),
+            "timeslot": self.timeslot,
+            "status": self.status,
+            "position": self.position,
+            "notified": self.notified,
+            "createdAt": self.created_at.isoformat(timespec="seconds"),
+        }
+
+
 class Makeup(db.Model):
     __tablename__ = "makeups"
 

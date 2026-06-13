@@ -9,4 +9,6 @@ export const timeSlots = [
 
 export const appointmentStatuses = ['已预约', '已确认', '已取消', '已完成']
 
+export const waitlistStatuses = ['候补中', '已补位', '已取消']
+
 export const makeupStatuses = ['待安排', '已安排', '已通过', '已取消']
